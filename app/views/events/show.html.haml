@@ -1,18 +1,8 @@
-%p#notice= notice
+%article.event
+  %header
+    %h1= @event.title
+    %h2= date_merge(@event)
 
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Start:
-  = @event.start_date
-%p
-  %b End:
-  = @event.end_date
+  .event-body
+    != @event.content_html
 
-.event-body
-  != @event.content_html
-
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
