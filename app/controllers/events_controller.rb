@@ -19,8 +19,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @user = current_user
-    @events = Event.unfinished
 
     respond_to do |format|
       format.html # new.html.erb
@@ -30,8 +28,6 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @user = current_user
-    @events = Event.unfinished
   end
 
   def create
