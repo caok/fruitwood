@@ -6,8 +6,8 @@
 
       .form-inputs
         = f.input :title, :input_html => { :class => 'span5' }
-        = f.input :start_date
-        = f.input :end_date
+        = f.input :start_date, :as => 'date_picker'
+        = f.input :end_date, :as => 'date_picker'
         = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
       .form-actions
         = f.button :submit, :class => ['btn', 'btn-info']
