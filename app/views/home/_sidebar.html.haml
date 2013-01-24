@@ -8,13 +8,14 @@
     %li= "#{l @user.created_at.to_date} 加入"
     %li.divider
 
-    %li.nav-header 当前活动
-    %li
-      - @events.each do |event|
-        = link_to(event_path(event)) do
-          %i.icon-time
-          = event.title
-    %li.divider
+    -if @events.size > 0
+      %li.nav-header 当前活动
+      %li
+        - @events.each do |event|
+          = link_to(event_path(event)) do
+            %i.icon-time
+            = event.title
+      %li.divider
 
     -if current_user.is? :customer
       %li.nav-header 管理

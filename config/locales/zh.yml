@@ -28,7 +28,6 @@ zh:
       title: "近期活动"
       description:
 
-
   labels:
     sign_in: "登录"
     sign_up: "注册"
@@ -37,15 +36,28 @@ zh:
   flash:
     events:
       created: "活动已经发布"
+      updated: "活动已经更新"
     users:
       updated: "个人资料已经更新"
 
   views:
     events:
+      title: "活动"
       new:
-        title: "发起活动"
+        title: "创建活动"
       edit:
         title: "修改活动"
     users:
       show:
         title: "个人资料"
+
+  helpers:
+    links:
+      confirm: "您确定吗？"
+      new: "新建"
+      destroy: "删除"
+      index: "清单"
+      edit: "编辑"
+      show: "显示"
+      back: "后退"
+      cancel: "撤销"

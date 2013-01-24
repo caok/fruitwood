@@ -1,11 +1,15 @@
-= simple_form_for(@event) do |f|
-  = f.error_notification
+.well
+  %fieldset
+    %legend 活动
+    = simple_form_for @event, :html => { :class => "form-horizontal" } do |f| 
+      = f.error_notification
 
-  .form-inputs
-    = f.input :title
-    = f.input :start_date
-    = f.input :end_date
-    = f.input :content
+      .form-inputs
+        = f.input :title, :input_html => { :class => 'span5' }
+        = f.input :start_date
+        = f.input :end_date
+        = f.input :content, :input_html => { :rows => 12, :class => 'span5' }
+      .form-actions
+        = f.button :submit, :class => ['btn', 'btn-info']
+        = link_to t("helpers.links.cancel"), root_path, :class => 'btn'
 
-  .form-actions
-    = f.button :submit
