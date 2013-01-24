@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @search = Event.search(params[:q])
+    @events= @search.result.order("id DESC")
+    @events = @events.page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

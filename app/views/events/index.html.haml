@@ -1,25 +1,27 @@
-%h1 Listing events
+- model_class = Event
+.page-header
+  %h2= "活动管理"
 
-%table
-  %tr
-    %th Title
-    %th Start
-    %th End
-    %th Content
-    %th
-    %th
-    %th
-
-  - @events.each do |event|
+%table.table.table-striped
+  %thead
     %tr
-      %td= event.title
-      %td= event.start_date
-      %td= event.end_date
-      %td= event.content
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:start_date)
+      %th= model_class.human_attribute_name(:end_date)
+      %th= "操作"
+  %tbody
+    -@events.each do |event|
+      %tr
+        %td= link_to event.id, event_path(event)
+        %td= event.title
+        %td= event.start_date
+        %td= event.end_date
+        %td
+          = link_to edit_event_path(event) do
+            %i.icon-edit
+          = link_to event, method: :delete, data: { confirm: 'Are you sure?' } do
+            %i.icon-remove
 
-%br
-
+= paginate @events
 = link_to 'New Event', new_event_path

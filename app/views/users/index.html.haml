@@ -1,4 +1,6 @@
 - model_class = User
+.page-header
+  %h2= "人员管理"
 
 %table.table.table-striped
   %thead
@@ -24,4 +26,3 @@
         %td= l user.created_at.to_date
 
 = paginate @users
-
