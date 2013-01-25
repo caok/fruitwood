@@ -1,0 +1,12 @@
+= simple_form_for(@dish) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :price
+    = f.association :category
+    = f.input :cover
+    = f.input :content
+
+  .form-actions
+    = f.button :submit

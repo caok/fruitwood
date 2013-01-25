@@ -3,6 +3,7 @@
   %ul.nav.nav-list
     %li.divider
     %li.nav-header= t('home.info')
+    %li 级别: 九牛
     %li= "电话: #{@user.tel}"
     %li= "email: #{@user.email}" if @user.email.present?
     %li= "#{l @user.created_at.to_date} 加入"

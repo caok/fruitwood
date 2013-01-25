@@ -1,4 +1,10 @@
 Fruitwood::Application.routes.draw do
+  resources :dishes
+
+
+  resources :categories
+
+
   match '/photos', to: "photo#create", :via => [:post, :put]
 
   resources :events
