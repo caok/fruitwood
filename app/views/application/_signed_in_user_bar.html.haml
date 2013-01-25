@@ -1,7 +1,7 @@
 %ul.user-bar.pull-right
   %li= link_to current_user.name, user_path(current_user), :title => t('devise.navigation.home')
   %li
-    = link_to account_path, :title => t('views.users.show.title') do
+    = link_to account_path, :title => t('users.show.title') do
       %i.icon-wrench
   %li
     = link_to destroy_user_session_path, :title => t('devise.navigation.sign_out'), :method => :delete do 

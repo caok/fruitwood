@@ -1,6 +1,8 @@
 - model_class = User
 .page-header
-  %h2= "人员管理"
+  %h2= t('.title')
+  %ul.nav.pull-right
+    %li= link_to t("helpers.links.index"), events_path
 
 %table.table.table-striped
   %thead

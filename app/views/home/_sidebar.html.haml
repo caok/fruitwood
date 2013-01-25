@@ -2,14 +2,14 @@
   %h4.side= @user.name
   %ul.nav.nav-list
     %li.divider
-    %li.nav-header 个人信息
+    %li.nav-header= t('home.info')
     %li= "电话: #{@user.tel}"
     %li= "email: #{@user.email}" if @user.email.present?
     %li= "#{l @user.created_at.to_date} 加入"
     %li.divider
 
     -if @events.size > 0
-      %li.nav-header 当前活动
+      %li.nav-header= t('home.events')
       %li
         - @events.each do |event|
           = link_to(event_path(event)) do
@@ -18,7 +18,7 @@
       %li.divider
 
     -if current_user.is? :customer
-      %li.nav-header 管理
+      %li.nav-header= t('home.manage')
       %li= link_to "人员管理", users_path
       %li= link_to "活动管理", events_path
       %li= link_to "追加菜品"

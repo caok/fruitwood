@@ -1,6 +1,8 @@
 - model_class = Event
 .page-header
-  %h2= "活动管理"
+  %h2= t '.title'
+  %ul.nav.pull-right
+    = link_to t('helpers.links.new'), new_event_path
 
 %table.table.table-striped
   %thead
@@ -9,7 +11,7 @@
       %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:start_date)
       %th= model_class.human_attribute_name(:end_date)
-      %th= "操作"
+      %th= t 'helpers.actions'
   %tbody
     -@events.each do |event|
       %tr
@@ -24,4 +26,3 @@
             %i.icon-remove
 
 = paginate @events
-= link_to 'New Event', new_event_path

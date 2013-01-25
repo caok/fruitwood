@@ -1,0 +1,37 @@
+zh:
+  flash:
+    events:
+      created: "活动已经发布"
+      updated: "活动已经更新"
+    users:
+      updated: "个人资料已经更新"
+
+  helpers:
+    actions: "操作"
+    links:
+      confirm: "您确定吗？"
+      new: "新建"
+      destroy: "删除"
+      index: "清单"
+      edit: "编辑"
+      show: "显示"
+      back: "后退"
+      cancel: "撤销"
+
+  events:
+    new:
+      title: "创建活动"
+    edit:
+      title: "修改活动"
+    index:
+      title: "活动管理"
+  users:
+    show:
+      title: "个人资料"
+    index:
+      title: "人员管理"
+  home:
+    info: "个人信息"
+    events: "当前活动"
+    manage: "管理"
+
