@@ -13,5 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+# carrierwave upload
+public/uploads
 
+# Ignore rvmrc configuration file
 .rvmrc
