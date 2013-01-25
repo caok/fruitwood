@@ -3,6 +3,8 @@ zh:
     models:
       user: "用户"
       event: "活动"
+      category: "类别"
+      dish: "菜肴"
     attributes:
       user:
         name: "姓名"
@@ -19,4 +21,12 @@ zh:
         title: "主题"
         start_date: "开始日期"
         end_date: "结束日期"
+        content: "简介"
+      category:
+        name: "名称"
+      dish:
+        name: "品名"
+        price: "价格"
+        category: "类别"
+        cover: "封面"
         content: "简介"
