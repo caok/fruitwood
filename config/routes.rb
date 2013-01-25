@@ -1,6 +1,7 @@
 Fruitwood::Application.routes.draw do
-  resources :events
+  post "photo/create"
 
+  resources :events
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
