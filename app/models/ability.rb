@@ -11,7 +11,6 @@ class Ability
     default_rules
   end
 
-  # admin role                 
   def admin_rules
     can :manage, :all
   end

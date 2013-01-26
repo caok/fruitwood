@@ -2,7 +2,7 @@
 .page-header
   %h2= t '.title'
   %ul.nav.pull-right
-    = link_to t('helpers.links.new'), new_event_path
+    = link_to t('helpers.links.new'), new_event_path if can? :create, Event
 
 %table.table.table-striped
   %thead
@@ -11,7 +11,7 @@
       %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:start_date)
       %th= model_class.human_attribute_name(:end_date)
-      %th= t 'helpers.actions'
+      %th= t 'helpers.actions' if can? :update, Event
   %tbody
     -@events.each do |event|
       %tr
@@ -20,9 +20,11 @@
         %td= event.start_date
         %td= event.end_date
         %td
-          = link_to edit_event_path(event) do
-            %i.icon-edit
-          = link_to event, method: :delete, data: { confirm: 'Are you sure?' } do
-            %i.icon-remove
+          - if can? :update, event
+            = link_to edit_event_path(event) do
+              %i.icon-edit
+          - if can? :destroy, event
+            = link_to event, method: :delete, data: { confirm: t("helpers.links.confirm") } do
+              %i.icon-remove
 
 = paginate @events

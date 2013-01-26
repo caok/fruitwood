@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource :only => [:new,:edit,:create,:update,:destroy]
+
   def index
     @search = Event.search(params[:q])
     @events= @search.result.order("id DESC")
