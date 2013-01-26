@@ -37,7 +37,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @dish, notice: 'Dish was successfully created.' }
+        format.html { redirect_to @dish, notice: I18n.t("flash.actions.create.notice") }
         format.json { render json: @dish, status: :created, location: @dish }
       else
         format.html { render action: "new" }
@@ -51,7 +51,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])
-        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
+        format.html { redirect_to @dish, notice: I18n.t("flash.actions.update.notice") }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
