@@ -1,21 +1,29 @@
-%p#notice= notice
+%article.event
+  .row-fluid
+    .span4
+      .event-sidebar
+        .event-map
+          != @dish.cover_html
+        %ul.unstyled
+          %li
+            %i.icon-th
+            = @dish.try(:category).try(:name)
+          %li
+            %i.icon-tag
+            = format_price @dish.price
+          -if can? :edit, @dish
+            %li
+              %i.icon-edit
+              = link_to 'Edit', edit_dish_path(@dish)
+          -if can? :destroy, @dish
+            %li
+              %i.icon-remove
+              = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
 
-%p
-  %b Name:
-  = @dish.name
-%p
-  %b Price:
-  = @dish.price
-%p
-  %b Category:
-  = @dish.category
-%p
-  %b Cover:
-  = @dish.cover
-%p
-  %b Content:
-  = @dish.content
+    .span8
+      %header
+        %h2= @dish.name
 
-= link_to 'Edit', edit_dish_path(@dish)
-\|
-= link_to 'Back', dishes_path
+      .event-body
+        != @dish.content_html
+

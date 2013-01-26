@@ -9,7 +9,8 @@ module ApplicationHelper
   end
 
   def body_attributes
-    class_attributes = [user_signed_in? ? 'signed_in' : 'signed_out']
+    [user_signed_in? ? 'signed_in' : 'signed_out']
+    #class_attributes = [user_signed_in? ? 'signed_in' : 'signed_out']
     #class_attributes << 'l-event' if controller_name == 'mockup' and action_name == 'event'
     #{
       #:class =>  class_attributes
@@ -29,5 +30,9 @@ module ApplicationHelper
       @_flahses_rendered = true
       render 'flashes'
     end
+  end
+
+  def format_price(price)
+    number_to_currency(price, :unit => I18n.t('helpers.yuan'), :delimiter => ',', :precision => 2, :format => "%n%u")
   end
 end

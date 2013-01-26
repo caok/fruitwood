@@ -7,6 +7,7 @@ zh:
       updated: "个人资料已经更新"
 
   helpers:
+    yuan: "元"
     actions: "操作"
     links:
       confirm: "您确定吗？"

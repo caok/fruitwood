@@ -1,5 +1,6 @@
 class Dish < ActiveRecord::Base
-  attr_accessible :content, :cover, :name, :price
+  extend HasHtmlPipeline
+  attr_accessible :content, :cover, :name, :price, :category_id
 
   validates :name, :cover, :price, :category, :presence => true
 

@@ -15,9 +15,9 @@
     %tr
       %td= dish.name
       %td= dish.price
-      %td= dish.category
-      %td= dish.cover
-      %td= dish.content
+      %td= dish.category.name
+      -#%td= dish.cover
+      -#%td= dish.content
       %td= link_to 'Show', dish
       %td= link_to 'Edit', edit_dish_path(dish)
       %td= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
