@@ -5,6 +5,7 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require jquery-fileupload/basic
 //= require jquery.textarea.caret
+//= require jquery.grid-a-licious.min
 //= require_self
 
 $(function() {
@@ -60,4 +61,17 @@ $(function() {
     on('blur', function() {
       $(this).next('p').removeClass('focused');
     });
+
+  $('#dishes').gridalicious({
+    width: 225,
+    selector: '.dish',
+    animate: true,
+    animationOptions: {
+      queue: true,
+      speed: 200,
+      duration: 300,
+      effect: 'fadeInOnAppear'
+    }
+  });
+
 });

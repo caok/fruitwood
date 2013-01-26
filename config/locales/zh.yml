@@ -6,6 +6,14 @@ zh:
       stamp: '%b%d日(%a)'
       stamp_with_year: '%Y年%b%d日'
 
+  views:
+    pagination:
+      previous: "前一页"
+      next: "后一页"
+      first: "首页"
+      last: "末页"
+      truncate: "..."
+
   layout:
     guomu: "果木年华"
     title: "果木年华"

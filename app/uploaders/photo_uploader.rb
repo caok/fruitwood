@@ -10,6 +10,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
 
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog

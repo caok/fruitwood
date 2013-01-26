@@ -1,28 +1,15 @@
-%h1 Listing dishes
+%ul.nav.nav-tabs
+  %li{class: params[:category_id].blank? && "active"}
+    =link_to t('helpers.links.all'), dishes_path
 
-%table
-  %tr
-    %th Name
-    %th Price
-    %th Category
-    %th Cover
-    %th Content
-    %th
-    %th
-    %th
+  - Category.all.each do |c|
+    %li{class: c.id.to_s == params[:category_id] && "active"}
+      =link_to c.name, dishes_path(category_id: c.id)
 
-  - @dishes.each do |dish|
-    %tr
-      %td= dish.name
-      %td= dish.price
-      %td= dish.category.name
-      -#%td= dish.cover
-      -#%td= dish.content
-      %td= link_to 'Show', dish
-      %td= link_to 'Edit', edit_dish_path(dish)
-      %td= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
+#dishes
+  = render @dishes
 
-%br
+= paginate @dishes
 
 = link_to 'New Dish', new_dish_path
 = link_to 'New Category', new_category_path

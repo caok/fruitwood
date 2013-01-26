@@ -1,8 +1,8 @@
 class DishesController < ApplicationController
-  # GET /dishes
-  # GET /dishes.json
   def index
-    @dishes = Dish.all
+    @search = Dish.search(params[:q])
+    @dishes= @search.result.order("id DESC").page(params[:page]).per(12)
+    @dishes = @dishes.where(category_id: params[:category_id]) if params[:category_id].present?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,8 +10,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # GET /dishes/1
-  # GET /dishes/1.json
   def show
     @dish = Dish.find(params[:id])
 
@@ -21,8 +19,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # GET /dishes/new
-  # GET /dishes/new.json
   def new
     @dish = Dish.new
 
@@ -32,13 +28,10 @@ class DishesController < ApplicationController
     end
   end
 
-  # GET /dishes/1/edit
   def edit
     @dish = Dish.find(params[:id])
   end
 
-  # POST /dishes
-  # POST /dishes.json
   def create
     @dish = Dish.new(params[:dish])
 
@@ -53,8 +46,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # PUT /dishes/1
-  # PUT /dishes/1.json
   def update
     @dish = Dish.find(params[:id])
 
@@ -69,8 +60,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # DELETE /dishes/1
-  # DELETE /dishes/1.json
   def destroy
     @dish = Dish.find(params[:id])
     @dish.destroy

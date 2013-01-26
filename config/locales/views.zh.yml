@@ -18,6 +18,8 @@ zh:
       show: "显示"
       back: "后退"
       cancel: "撤销"
+      detail: "详情"
+      all: "所有"
 
   events:
     new:
