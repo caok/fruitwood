@@ -21,7 +21,10 @@
     %p= t('highlights.about_us.description')
   .span3.offset1
     %h3= t('highlights.dishes.title')
-    %p= t('highlights.dishes.description')
+    - Dish.last(3).each do |d|
+      %p= link_to d.name, d
+    %p= link_to t('helpers.links.more'), dishes_path
   .span3.offset1
     %h3= t('highlights.events.title')
-    %p= t('highlights.events.description')
+    - Event.last(4).each do |e|
+      %p= link_to e.title, e

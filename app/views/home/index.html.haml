@@ -2,5 +2,10 @@
   = render "sidebar"
 
   .span9
-    .well 推荐菜肴，more...
+    .well
+      %legend= t('highlights.dishes.title')
+      #dishes
+        = render @dishes
+      .form-actions
+        = link_to t("helpers.links.more"), dishes_path, :class => 'btn'
 

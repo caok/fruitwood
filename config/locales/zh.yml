@@ -31,10 +31,8 @@ zh:
       description: "果木牛排，是用苹果树的木头作为燃料，在特制的窑炉里充分燃烧，让窑炉里的温度达到600摄氏度左右，然后再把处理好的优质牛排放入窑炉的烤板里加工后做出的牛排。"
     dishes:
       title: "推荐菜肴"
-      description:
     events:
       title: "近期活动"
-      description:
 
   labels:
     sign_in: "登录"
