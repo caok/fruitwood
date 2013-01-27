@@ -1,8 +1,6 @@
 - model_class = User
 .page-header
   %h2= t('.title')
-  %ul.nav.pull-right
-    %li= link_to t("helpers.links.index"), events_path
 
 %table.table.table-striped
   %thead
@@ -12,6 +10,7 @@
       %th= model_class.human_attribute_name(:tel)
       %th= model_class.human_attribute_name(:email)
       %th= model_class.human_attribute_name(:roles_mask)
+      %th
       %th= model_class.human_attribute_name(:last_sign_in_at)
       %th= model_class.human_attribute_name(:created_at)
   %tbody
@@ -24,6 +23,7 @@
         %td
           -for role in user.roles
             = I18n.t "role.#{role}"
+        %td= link_to t('helpers.links.grant_permission'), set_roles_user_path(user) if can? :manage, user
         %td= l user.last_sign_in_at.to_date
         %td= l user.created_at.to_date
 

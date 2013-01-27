@@ -20,7 +20,14 @@ Fruitwood::Application.routes.draw do
 
   get "home/index"
 
-  resources :users, :only => [:show, :index]
+  #resources :users
+
+  resources :users, :only => [:show, :index] do
+    member do
+      get 'set_roles'
+      put 'update_roles'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

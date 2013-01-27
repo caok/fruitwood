@@ -13,7 +13,10 @@ zh:
       created: "活动已经发布"
       updated: "活动已经更新"
     users:
-      updated: "个人资料已经更新"
+      authorization_success:
+        notice: "授权成功。"
+      authorization_failed:
+        notice: "授权失败。"
 
   helpers:
     yuan: "元"
@@ -31,6 +34,7 @@ zh:
       detail: "详情"
       all: "所有"
       more: "更多..."
+      grant_permission: "授予权限"
 
   events:
     new:
@@ -44,6 +48,8 @@ zh:
       title: "个人资料"
     index:
       title: "人员管理"
+    set_roles:
+      title: "权限授予"
   home:
     info: "个人信息"
     events: "当前活动"

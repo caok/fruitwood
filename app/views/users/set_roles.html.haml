@@ -1,0 +1,22 @@
+.well
+  %fieldset
+    %legend= t('.title')
+    = simple_form_for(@user, :url => update_roles_user_path(@user), :html => {:method => :put}) do |f|
+      = f.error_notification
+
+      - disabled = []
+      - disabled << "hr"      if current_user.is? :hr and current_user == @user
+      - disabled.delete "hr"  if current_user.is? :admin
+      - disabled << "admin"   if current_user.is? :hr and !current_user.is? :admin
+      - disabled << "admin"   if @user.id == 1 or current_user == @user
+      - disabled.uniq!
+
+      .form-inputs
+        - disabled.each do |role|
+          = hidden_field_tag "user[roles][]", role if @user.is? role
+        = f.input :roles, :as => :check_boxes, :collection => User::ROLES,
+          :member_label => proc {|r| I18n.t("role.#{r}")} , :label => "", :disabled => disabled
+
+      .form-actions
+        = f.button :submit, :class => ['btn', 'btn-info']
+        = link_to t("helpers.links.cancel"), root_path, :class => 'btn'
