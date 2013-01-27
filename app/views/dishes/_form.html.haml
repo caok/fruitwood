@@ -1,6 +1,8 @@
 .well
   %fieldset
-    %legend 菜肴
+    .page-header
+      %h3= t 'dishes.edit.title'
+      = link_to t('helpers.links.new_category'), new_category_path, target: "_blank", :class => 'pull-right'
     = simple_form_for @dish, :html => { :class => "form-horizontal" } do |f| 
       = f.error_notification
 

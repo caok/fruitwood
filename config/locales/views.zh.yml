@@ -21,6 +21,7 @@ zh:
     links:
       confirm: "您确定吗？"
       new: "新建"
+      new_category: "新建类别"
       destroy: "删除"
       index: "清单"
       edit: "编辑"
@@ -47,4 +48,7 @@ zh:
     info: "个人信息"
     events: "当前活动"
     manage: "管理"
+  dishes:
+    edit:
+      title: "菜肴"
 
