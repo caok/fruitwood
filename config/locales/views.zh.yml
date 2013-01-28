@@ -35,6 +35,9 @@ zh:
       all: "所有"
       more: "更多..."
       grant_permission: "授予权限"
+      users: "人员管理"
+      new_event: "追加活动"
+      new_dish: "追加菜品"
 
   events:
     new:

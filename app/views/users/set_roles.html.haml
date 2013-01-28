@@ -14,8 +14,7 @@
       .form-inputs
         - disabled.each do |role|
           = hidden_field_tag "user[roles][]", role if @user.is? role
-        = f.input :roles, :as => :check_boxes, :collection => User::ROLES,
-          :member_label => proc {|r| I18n.t("role.#{r}")} , :label => "", :disabled => disabled
+        = f.input :roles, :as => :check_boxes, :collection => User::ROLES, :label => "", :label_method => proc {|r| I18n.t("role.#{r}")}
 
       .form-actions
         = f.button :submit, :class => ['btn', 'btn-info']
