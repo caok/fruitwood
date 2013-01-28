@@ -53,7 +53,6 @@ describe User do
 
     it "with a duplicated tel" do
       create :user, :tel => user.tel
-
       expect(user.save).to be_false
     end
 
