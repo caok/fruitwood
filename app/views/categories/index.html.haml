@@ -1,19 +1,25 @@
-%h1 Listing categories
+- model_class = Category
+.page-header
+  %h2= t '.title'
+  %ul.nav.pull-right
+    = link_to t('helpers.links.new'), new_category_path if can? :create, Event
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @categories.each do |category|
+%table.table.table-striped
+  %thead
     %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, method: :delete, data: { confirm: t("helpers.links.confirm") }
+      %th
+      %th= model_class.human_attribute_name(:name)
+      %th= t 'helpers.actions' if can? :update, Category
+  %tbody
+    -@categories.each do |category|
+      %tr
+        %td= link_to category.id, category_path(category)
+        %td= category.name
+        %td
+          - if can? :update, category
+            = link_to edit_category_path(category) do
+              %i.icon-edit
+          - if can? :destroy, category
+            = link_to category, method: :delete, data: { confirm: t("helpers.links.confirm") } do
+              %i.icon-remove
 
-%br
-
-= link_to 'New Category', new_category_path

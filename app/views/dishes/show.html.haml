@@ -18,7 +18,7 @@
           -if can? :destroy, @dish
             %li
               %i.icon-remove
-              = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
+              = link_to 'Destroy', @dish, method: :delete, data: { confirm: 'Are you sure?' }
 
     .span8
       %header

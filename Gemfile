@@ -11,7 +11,9 @@ gem 'ransack'
 gem 'kaminari'
 gem 'devise'
 gem 'cancan'
+# attachment
 gem 'carrierwave'
+gem 'mini_magick'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'

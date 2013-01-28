@@ -60,4 +60,10 @@ zh:
   dishes:
     edit:
       title: "菜肴"
-
+  categories:
+    index:
+      title: "类别"
+    new:
+      title: "创建类别"
+    edit:
+      title: "修改类别"
