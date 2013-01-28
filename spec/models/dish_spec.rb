@@ -33,7 +33,7 @@ describe Dish do
     end
 
     it "with a duplicated name" do
-      dish.name = dish.name
+      create :dish, :name => dish.name
       expect(dish.save).to be_false
     end
 
