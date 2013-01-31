@@ -12,11 +12,10 @@ describe EventsController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all events as @events" do
-      event = Event.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:events).should eq([event])
+  describe "GET 'index'" do
+    it "renders the event list" do
+      get 'index'
+      response.should render_template('index')
     end
   end
 
@@ -28,10 +27,35 @@ describe EventsController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new event as @event" do
-      get :new, {}, valid_session
-      assigns(:event).should be_a_new(Event)
+  describe "GET 'new'" do
+    context 'when user is admin' do
+      login_admin
+      it "builds a new event" do
+        get 'new'
+        assigns[:event].should be_a_kind_of(Event)
+        assigns[:event].should be_a_new_record
+      end
+
+      it "renders the new event form" do
+        get 'new'
+        response.should render_template('new')
+      end
+    end
+
+    context 'when user is customer' do
+      login_customer
+      it "should be redirect" do
+        get 'new'
+        response.should be_redirect
+        response.should redirect_to(root_path)
+      end
+    end
+
+    context 'when user has not yet signed in' do
+      it "should be redirect" do
+        get 'new'
+        response.should redirect_to(root_path)
+      end
     end
   end
 
