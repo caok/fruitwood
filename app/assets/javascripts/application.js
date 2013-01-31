@@ -41,7 +41,7 @@ $(function() {
       done: function (e, data) {
         $.each(data.result.files, function (index, file) {
           targetTextarea = $(e.target).closest('.control-group').find('textarea');
-          markdownImage = "![" + file.url + "](" + file.url + ")";
+          markdownImage = "![" + file.name + "](" + file.url + ")";
           if (targetTextarea.val() != '') {
             markdownImage = "\n" + markdownImage + "\n";
           }
