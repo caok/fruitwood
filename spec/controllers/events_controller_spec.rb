@@ -68,38 +68,42 @@ describe EventsController do
   end
 
   describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Event" do
-        expect {
+    context "when admin has signed in" do
+      login_admin
+      describe "with valid params" do
+        it "creates a new Event" do
+          expect {
+            post :create, {:event => valid_attributes}, valid_session
+            binding.pry
+          }.to change(Event, :count).by(1)
+        end
+
+        it "assigns a newly created event as @event" do
           post :create, {:event => valid_attributes}, valid_session
-        }.to change(Event, :count).by(1)
+          assigns(:event).should be_a(Event)
+          assigns(:event).should be_persisted
+        end
+
+        it "redirects to the created event" do
+          post :create, {:event => valid_attributes}, valid_session
+          response.should redirect_to(Event.last)
+        end
       end
 
-      it "assigns a newly created event as @event" do
-        post :create, {:event => valid_attributes}, valid_session
-        assigns(:event).should be_a(Event)
-        assigns(:event).should be_persisted
-      end
+      describe "with invalid params" do
+        it "assigns a newly created but unsaved event as @event" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Event.any_instance.stub(:save).and_return(false)
+          post :create, {:event => { "title" => "invalid value" }}, valid_session
+          assigns(:event).should be_a_new(Event)
+        end
 
-      it "redirects to the created event" do
-        post :create, {:event => valid_attributes}, valid_session
-        response.should redirect_to(Event.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved event as @event" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => { "title" => "invalid value" }}, valid_session
-        assigns(:event).should be_a_new(Event)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Event.any_instance.stub(:save).and_return(false)
-        post :create, {:event => { "title" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Event.any_instance.stub(:save).and_return(false)
+          post :create, {:event => { "title" => "invalid value" }}, valid_session
+          response.should render_template("new")
+        end
       end
     end
   end
