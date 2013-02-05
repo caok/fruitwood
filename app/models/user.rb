@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :tel, :roles_mask
 
+  # constant
   ROLES = %w[admin customer]
 
+  # association
   has_many :photos
 
   ##############

@@ -1,13 +1,16 @@
 class Event < ActiveRecord::Base
   extend HasHtmlPipeline
+  has_html_pipeline :content, :markdown
 
   attr_accessible :content, :end_date, :start_date, :title
 
-  has_html_pipeline :content, :markdown
-
+  ##############
+  # validation #
+  ##############
   validates :title, :start_date, :end_date, :presence => true
   validate :end_date_must_after_start_date
 
+  # scope
   scope :unfinished, where(["end_date > ? ", Date.current])
 
   private

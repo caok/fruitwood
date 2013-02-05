@@ -6,5 +6,6 @@ class Category < ActiveRecord::Base
   ##############
   validates :name, :presence => true, :uniqueness => true
 
+  # association
   has_many :dishes
 end
