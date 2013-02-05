@@ -4,7 +4,7 @@ zh:
     formats:
       datepicker: 'yyyy-mm-dd'
       stamp: '%b%d日(%a)'
-      stamp_with_year: '%Y年%b%d日'
+      stamp_with_year: '%Y年%b%d日(%a)'
 
   views:
     pagination:

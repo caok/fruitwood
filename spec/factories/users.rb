@@ -4,8 +4,7 @@ FactoryGirl.define do
   sample_name = ['jack', 'lucy', 'dave', 'lily', 'john', 'beth'].sample
   sequence(:name) { |n| "#{sample_name}#{n}" }
   sequence(:email) { |n| "#{sample_name}#{n}@example.com".downcase }
-  sample_tel = ["1377454575", "1245456987", "1457845698", "1557845700", "5547432"].sample
-  sequence(:tel) { |n| "#{sample_tel}#{n}" }
+  sequence(:tel, 13998745632)         { |n| "#{n}"}
 
   factory :user do
     name
