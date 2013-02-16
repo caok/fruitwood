@@ -15,7 +15,6 @@ gem 'cancan'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'exception_notification'
-#gem 'letter_opener', group: :development
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
@@ -35,7 +34,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'letter_opener'
+  gem 'letter_opener'  #mail preview
 end
 
 group :test do
