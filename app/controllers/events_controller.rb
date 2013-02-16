@@ -5,6 +5,7 @@ class EventsController < ApplicationController
     @search = Event.search(params[:q])
     @events= @search.result.order("id DESC")
     @events = @events.page(params[:page])
+    raise "Oh, error!"
 
     respond_to do |format|
       format.html # index.html.erb

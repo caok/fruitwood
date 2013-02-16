@@ -67,6 +67,8 @@ GEM
     erubis (2.7.0)
     escape_utils (0.2.4)
     eventmachine (1.0.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.1.0)
@@ -238,6 +240,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.2.1)
   devise
+  exception_notification
   factory_girl_rails (~> 4.0)
   haml-rails
   has_html_pipeline

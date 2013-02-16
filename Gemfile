@@ -14,6 +14,8 @@ gem 'cancan'
 # attachment
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'exception_notification'
+#gem 'letter_opener', group: :development
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
