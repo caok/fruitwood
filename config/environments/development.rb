@@ -34,11 +34,4 @@ Fruitwood::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  config.middleware.use ExceptionNotifier,
-    :sender_address => 'starcloudsip@163.com',
-    :exception_recipients => %w{caok1231@163.com},
-    :ignore_exceptions => ExceptionNotifier.default_ignore_exceptions
-
-  config.action_mailer.delivery_method = :letter_opener
 end

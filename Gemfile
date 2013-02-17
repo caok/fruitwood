@@ -34,7 +34,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'letter_opener'  #mail preview
 end
 
 group :test do
