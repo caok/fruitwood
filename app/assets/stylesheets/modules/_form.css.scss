@@ -50,6 +50,19 @@ form {
 }
 
 .uploadable {
+  .nav.nav-tabs{
+    margin-bottom: 8px;
+  }
+
+  .preview-pane {
+    border: 1px solid #cccccc;
+    border-bottom: 1px dashed #DDD;
+  }
+
+  .preview-hint {
+    display: none;
+  }
+
   textarea {
     border-bottom: 1px dashed #DDD;
     border-bottom-left-radius: 0;

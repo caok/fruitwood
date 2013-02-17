@@ -28,20 +28,20 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'thin'
-  gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'pry'
+  gem 'capybara'
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
   gem 'factory_girl_rails', '~> 4.0'
 end
 
-group :test do
-  gem 'capybara'
+group :development do
+  gem 'thin'
+  gem 'pry'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
