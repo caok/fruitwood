@@ -30,6 +30,7 @@ end
 group :development, :test do
   gem 'thin'
   gem 'quiet_assets'
+  gem 'better_errors'
   gem 'pry'
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
