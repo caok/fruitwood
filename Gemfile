@@ -31,6 +31,7 @@ group :development, :test do
   gem 'thin'
   gem 'quiet_assets'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'pry'
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
