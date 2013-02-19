@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin customer]
 
   # association
-  has_many :photos
+  has_many :photos, :dependent => :destroy
 
   ##############
   # validation #

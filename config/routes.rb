@@ -1,5 +1,8 @@
 Fruitwood::Application.routes.draw do
-  resources :dishes
+  resources :dishes do
+    resources :comments, :only => :create
+  end
+  resources :comments
 
   resources :categories
 

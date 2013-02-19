@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @comment.user
+%p
+  %b Content:
+  = @comment.content
+%p
+  %b Attach:
+  = @comment.attach_id
+%p
+  %b Attach type:
+  = @comment.attach_type
+
+= link_to 'Edit', edit_comment_path(@comment)
+\|
+= link_to 'Back', comments_path

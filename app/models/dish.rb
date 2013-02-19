@@ -14,4 +14,5 @@ class Dish < ActiveRecord::Base
 
   # association
   belongs_to :category
+  has_many :comments, :as => :attach, :dependent => :destroy
 end
