@@ -2,18 +2,18 @@
 
   .jumbotron
     .container
-      .row-fluid
-        .span5
+      .row
+        .span6
           .slogan
-            h1= t('slogan.title')
-            p= t('slogan.description')
-        .span5.offset2
+            h1.slogan-title = t('slogan.title')
+            p.slogan-description = t('slogan.description')
+        .span4.offset2
           = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
-            = f.input :name, :label => false, :placeholder => resource.class.human_attribute_name(:name)
-            = f.input :tel, :label => false, :placeholder => resource.class.human_attribute_name(:tel)
-            = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password)
-            = f.input :password_confirmation, :label => false, :placeholder => resource.class.human_attribute_name(:password_confirmation)
-            = f.submit t('labels.sign_up'), :class => 'btn btn-success'
+            = f.input :name, :label => false, :placeholder => resource.class.human_attribute_name(:name), :input_html => { :class => 'input-large'}
+            = f.input :tel, :label => false, :placeholder => resource.class.human_attribute_name(:tel), :input_html => { :class => 'input-large'}
+            = f.input :password, :label => false, :placeholder => resource.class.human_attribute_name(:password), :input_html => { :class => 'input-large'}
+            = f.input :password_confirmation, :label => false, :placeholder => resource.class.human_attribute_name(:password_confirmation), :input_html => { :class => 'input-large'}
+            = f.submit t('labels.sign_up'), :class => 'btn btn-success btn-large'
 
 .row-fluid
   .span3
