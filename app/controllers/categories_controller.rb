@@ -10,15 +10,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def show
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @category }
-    end
-  end
-
   def new
     @category = Category.new
 
@@ -37,7 +28,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: I18n.t("flash.actions.create.notice") }
+        format.html { redirect_to categories_url, notice: I18n.t("flash.actions.create.notice") }
         format.json { render json: @category, status: :created, location: @category }
       else
         format.html { render action: "new" }
@@ -51,7 +42,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to @category, notice: I18n.t("flash.actions.update.notice") }
+        format.html { redirect_to categories_url, notice: I18n.t("flash.actions.update.notice") }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
