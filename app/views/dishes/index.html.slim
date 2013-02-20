@@ -1,0 +1,12 @@
+ul.nav.nav-tabs
+  li class=(params[:category_id].blank? && "active")
+    = link_to t('helpers.links.all'), dishes_path
+
+  - Category.all.each do |c|
+    li class=(c.id.to_s == params[:category_id] && "active")
+      = link_to c.name, dishes_path(category_id: c.id)
+
+#dishes
+  = render @dishes
+
+= paginate @dishes

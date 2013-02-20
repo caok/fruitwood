@@ -4,7 +4,7 @@
   .span9
     .well
       .page-header
-        %h4= t('highlights.dishes.title')
+        h4= t('highlights.dishes.title')
         = link_to t("helpers.links.more"), dishes_path, :class => 'btn pull-right'
       #dishes
         = render @dishes

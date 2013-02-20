@@ -1,25 +1,25 @@
 - model_class = Category
 .page-header
-  %h2= t '.title'
-  %ul.nav.pull-right
+  h2= t '.title'
+  ul.nav.pull-right
     = link_to t('helpers.links.new'), new_category_path if can? :create, Event
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th
-      %th= model_class.human_attribute_name(:name)
-      %th= t 'helpers.actions' if can? :update, Category
-  %tbody
+table.table.table-striped
+  thead
+    tr
+      th
+      th= model_class.human_attribute_name(:name)
+      th= t 'helpers.actions' if can? :update, Category
+  tbody
     -@categories.each do |category|
-      %tr
-        %td= link_to category.id, category_path(category)
-        %td= category.name
-        %td
+      tr
+        td= link_to category.id, category_path(category)
+        td= category.name
+        td
           - if can? :update, category
             = link_to edit_category_path(category) do
-              %i.icon-edit
+              i.icon-edit
           - if can? :destroy, category
             = link_to category, method: :delete, data: { confirm: t("helpers.links.confirm") } do
-              %i.icon-remove
+              i.icon-remove
 

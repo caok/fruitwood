@@ -1,0 +1,9 @@
+- model_class = User
+
+header
+  h2.l-page-title= @user.name
+  ul.user-info.unstyled.muted
+    li = "电话: #{@user.tel}"
+    li = "email: #{@user.email}" if @user.email.present?
+    li = "#{l @user.created_at.to_date} 加入"
+

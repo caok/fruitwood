@@ -1,6 +1,6 @@
 .well
-  %fieldset
-    %legend= t('.title')
+  fieldset
+    legend= t('.title')
     = simple_form_for(@user, :url => update_roles_user_path(@user), :html => {:method => :put}) do |f|
       = f.error_notification
 

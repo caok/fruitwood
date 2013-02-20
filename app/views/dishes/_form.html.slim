@@ -1,9 +1,9 @@
 .well
-  %fieldset
+  fieldset
     .page-header
-      %h3= t 'dishes.edit.title'
+      h3= t 'dishes.edit.title'
       = link_to t('helpers.links.new_category'), new_category_path, target: "_blank", :class => 'pull-right'
-    = simple_form_for @dish, :html => { :class => "form-horizontal" } do |f| 
+    = simple_form_for @dish, :html => { :class => "form-horizontal" } do |f|
       = f.error_notification
 
       .form-inputs

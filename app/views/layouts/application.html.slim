@@ -1,0 +1,45 @@
+doctype 5
+html
+  head
+    title = t('layout.title')
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+
+  body *body_attributes
+    header#header
+      .navbar.navbar-static-top
+        .navbar-inner
+          .container
+            a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.brand href="/"
+              /%span.icon-guomu
+              span= t('layout.guomu')
+            .nav-collapse.collapse
+              = render_user_bar
+    #main role='main'
+      .container
+        = render_flashes
+
+      = yield :before_content
+
+      #content
+        .container
+          = content_for?(:content) ? yield(:content) : yield
+
+    hr
+    footer
+      .container
+        p.pull-right #{link_to(t('layout.holder'), "http://caok1231.com")} &copy; #{Date.current.year}
+        ul.pull-left.horizontal
+          li = link_to t('layout.opensource'), "http://github.com/saberma/19wu"
+          li.muted
+            | /
+          li = link_to t('layout.contact_us'), "mailto:starclouds.net@gmail.com"
+
+    = javascript_include_tag "application"
+    = yield :body_bottom   

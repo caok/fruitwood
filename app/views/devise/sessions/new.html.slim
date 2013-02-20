@@ -1,8 +1,8 @@
 .row
   .span4.offset4.well
-    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f| 
-      %fieldset
-        %legend= t('devise.views.sessions.new.title')
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-full-width' }) do |f|
+      fieldset
+        legend= t('devise.views.sessions.new.title')
         = render_flashes
         = f.label :tel
         = f.text_field :tel

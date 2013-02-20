@@ -5,8 +5,8 @@
       .row-fluid
         .span5
           .slogan
-            %h1= t('slogan.title')
-            %p= t('slogan.description')
+            h1= t('slogan.title')
+            p= t('slogan.description')
         .span5.offset2
           = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-full-width'}) do |f|
             = f.input :name, :label => false, :placeholder => resource.class.human_attribute_name(:name)
@@ -17,14 +17,14 @@
 
 .row-fluid
   .span3
-    %h3= t('highlights.about_us.title')
-    %p= t('highlights.about_us.description')
+    h3= t('highlights.about_us.title')
+    p= t('highlights.about_us.description')
   .span3.offset1
-    %h3= t('highlights.dishes.title')
+    h3= t('highlights.dishes.title')
     - Dish.last(3).each do |d|
-      %p= link_to d.name, d
-    %p= link_to t('helpers.links.more'), dishes_path
+      p= link_to d.name, d
+    p= link_to t('helpers.links.more'), dishes_path
   .span3.offset1
-    %h3= t('highlights.events.title')
+    h3= t('highlights.events.title')
     - Event.last(4).each do |e|
-      %p= link_to e.title, e
+      p= link_to e.title, e

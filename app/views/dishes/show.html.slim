@@ -1,29 +1,29 @@
-%article.event
+article.event
   .row-fluid
     .span4
       .event-sidebar
         .event-map
-          != @dish.cover_html
-        %ul.unstyled
-          %li
-            %i.icon-th
+          == @dish.cover_html
+        ul.unstyled
+          li
+            i.icon-th
             = @dish.try(:category).try(:name)
-          %li
-            %i.icon-tag
+          li
+            i.icon-tag
             = format_price @dish.price
           -if can? :edit, @dish
-            %li
-              %i.icon-edit
+            li
+              i.icon-edit
               = link_to 'Edit', edit_dish_path(@dish)
           -if can? :destroy, @dish
-            %li
-              %i.icon-remove
+            li
+              i.icon-remove
               = link_to 'Destroy', @dish, method: :delete, data: { confirm: 'Are you sure?' }
 
     .span8
-      %header
-        %h2= @dish.name
+      header
+        h2 = @dish.name
 
       .event-body
-        != @dish.content_html
+        == @dish.content_html
 
