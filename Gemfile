@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'mysql2'
 
 gem 'simple_form'
@@ -25,6 +25,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
   gem 'jquery-fileupload-rails'
   gem 'therubyracer', '~> 0.11.2'
+  gem 'turbo-sprockets-rails3'
 end
 
 group :development, :test do
