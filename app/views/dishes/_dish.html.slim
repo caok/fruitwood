@@ -1,10 +1,11 @@
-.dish
-  .thumbnail
-    a{href="#{dish_path(dish)}" target="_blank" data-cid="#{dish.category_id}"}
-      == dish.cover_html
-    .desc
-      = strip_tags(dish.name).truncate(28, omission: '')
-    .desc
-      span.price.red= format_price dish.price
-    .op
-      = link_to t("helpers.links.detail"), dish_path(dish), class: "btn btn-success", target: "_blank"
+- cache dish do
+  .dish
+    .thumbnail
+      a{href="#{dish_path(dish)}" target="_blank" data-cid="#{dish.category_id}"}
+        == dish.cover_html
+      .desc
+        = strip_tags(dish.name).truncate(28, omission: '')
+      .desc
+        span.price.red= format_price dish.price
+      .op
+        = link_to t("helpers.links.detail"), dish_path(dish), class: "btn btn-success", target: "_blank"

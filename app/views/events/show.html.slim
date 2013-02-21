@@ -1,8 +1,9 @@
-article.event
-  header
-    h1 = @event.title
-    h2 = date_merge(@event)
+- cache @event do
+  article.event
+    header
+      h1 = @event.title
+      h2 = date_merge(@event)
 
-  .event-body
-    == @event.content_html
+    .event-body
+      == @event.content_html
 
