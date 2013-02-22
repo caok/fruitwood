@@ -1,12 +1,14 @@
 Fruitwood::Application.routes.draw do
-  resources :dishes
+  resources :dishes do
+    resources :comments
+  end
 
   resources :categories
 
+  resources :events
+
   match '/photos', to: "photo#create", :via => [:post, :put]
   post "/content/preview/" => "home#content_preview"
-
-  resources :events
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
@@ -19,16 +21,14 @@ Fruitwood::Application.routes.draw do
     get 'account' => 'registrations#edit', :as => 'account'
   end
 
-  get "home/index"
-
-  #resources :users
-
   resources :users, :only => [:show, :index] do
     member do
       get 'set_roles'
       put 'update_roles'
     end
   end
+
+  get "home/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
