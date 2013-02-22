@@ -1,0 +1,5 @@
+= form_for [@commentable, @comment] do |f|
+  .field
+    = f.text_area :content, :rows => 6
+    = f.hidden_field :user_id, :value => current_user.id
+  = f.submit

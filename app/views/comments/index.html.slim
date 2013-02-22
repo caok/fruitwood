@@ -1,2 +1,4 @@
-h1 Comments#index
-p Find me in app/views/comments/index.html.slim
+h1 Comments
+= render 'comments'
+
+p= link_to "New comment", [:new, @commentable, :comment]

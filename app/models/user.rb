@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :tel, :presence => true, :uniqueness => true, :format => { :with => /(^\d{7,8}$)|(^\d{11}$)/ }
 
-  ######################       
+  ######################
   # callback functions #
-  ######################       
+  ######################
   before_create :update_roles_of_user
   def update_roles_of_user
     self.roles = 'customer' if self.roles_mask.blank?

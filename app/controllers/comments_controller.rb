@@ -6,6 +6,17 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @comment = @commentable.comments.new
+  end
+
+  def create
+    @comment = @commentable.comments.new(params[:comment])
+    if @comment.save
+      #redirect_to [@commentable, :comments], :notice => "Comment created."
+      redirect_to @commentable, :notice => "Comment created."
+    else
+      render :new
+    end
   end
 
   private
