@@ -1,0 +1,7 @@
+<% if @comment.new_record? %>
+  $('input#comment_content').effect('highlight', { color: 'red' });
+<% else %>
+  <%#$('div#comments').append("<%= div_for @comment do %><%= simple_format @comment.content %><% end %>");%>
+  $('div#comments').append("<h1>hello</h1>");
+  <%#$('div#<%= dom_id(@comment) %>').effect('highlight');%>
+<% end %>

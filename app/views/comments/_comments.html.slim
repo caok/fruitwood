@@ -1,4 +1,4 @@
 #comments
   - @comments.each do |comment|
-    .comment
+    = div_for comment do
       = simple_format comment.content

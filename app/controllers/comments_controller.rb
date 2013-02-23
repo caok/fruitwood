@@ -11,11 +11,16 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(params[:comment])
-    if @comment.save
-      #redirect_to [@commentable, :comments], :notice => "Comment created."
-      redirect_to @commentable, :notice => "Comment created."
-    else
-      render :new
+
+    respond_to do |format|
+      if @comment.save
+        #redirect_to @commentable, :notice => "Comment created."
+        format.html { redirect_to @commentable, notice: I18n.t("flash.actions.create.notice") }
+        format.json { render json: @comment, status: :created, location: @dish }
+      else
+        render :new
+      end
+      format.js
     end
   end
 
