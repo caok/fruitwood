@@ -21,6 +21,7 @@ zh:
   helpers:
     yuan: "元"
     actions: "操作"
+    comments: "评论"
     links:
       confirm: "您确定吗？"
       new: "新建"

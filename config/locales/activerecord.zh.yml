@@ -5,6 +5,7 @@ zh:
       event: "活动"
       category: "类别"
       dish: "菜肴"
+      comment: "评论"
     attributes:
       user:
         name: "姓名"

@@ -15,12 +15,11 @@
             -if can? :edit, @dish
               li
                 i.icon-edit
-                = link_to 'Edit', edit_dish_path(@dish)
+                = link_to t('helpers.links.edit'), edit_dish_path(@dish)
             -if can? :destroy, @dish
               li
                 i.icon-remove
-                = link_to 'Destroy', @dish, method: :delete, data: { confirm: 'Are you sure?' }
-
+                = link_to t("helpers.links.destroy"), @dish, method: :delete, data: { confirm: t("helpers.links.confirm") }
       .span8
         header
           h2 = @dish.name
@@ -28,6 +27,7 @@
         .event-body
           == @dish.content_html
 
-h3 Comments
+h4= t('helpers.comments')
+hr
 = render "comments/comments"
 = render "comments/form"
