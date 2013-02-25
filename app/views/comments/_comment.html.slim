@@ -3,5 +3,5 @@
     .span1
       = comment.try(:user).try(:name)
     .well.span10
-      = link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close'
+      = link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close' if can? :destroy, comment
       = simple_format comment.content

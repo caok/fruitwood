@@ -7,3 +7,8 @@
     .event-body
       == @event.content_html
 
+h4= t('helpers.comments')
+hr
+= render "comments/comments"
+- if can? :create, Comment
+  = render "comments/form"

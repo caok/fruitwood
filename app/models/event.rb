@@ -10,6 +10,9 @@ class Event < ActiveRecord::Base
   validates :title, :start_date, :end_date, :presence => true
   validate :end_date_must_after_start_date
 
+  # association
+  has_many :comments, :as => :commentable, :dependent => :destroy
+
   # scope
   scope :unfinished, where(["end_date > ? ", Date.current])
 

@@ -17,6 +17,10 @@ class Ability
 
   def customer_rules
     can :read, :all
+    can :create, Comment
+    can :destroy, Comment do |c|
+      c.user_id == @user.id
+    end
   end
 
   def guest_rules
