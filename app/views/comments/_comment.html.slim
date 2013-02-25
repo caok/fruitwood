@@ -1,7 +1,8 @@
-.row-fluid
+.well.well-small
   = div_for comment do
-    .span1
-      = comment.try(:user).try(:name)
-    .well.span10
-      = link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close' if can? :destroy, comment
+    = link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close' if can? :destroy, comment
+    p.muted
+      = format_date comment.created_at
+      |  | #{comment.user_name}
+    blockquote
       = simple_format comment.content

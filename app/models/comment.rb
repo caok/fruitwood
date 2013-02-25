@@ -7,4 +7,9 @@ class Comment < ActiveRecord::Base
   # association
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
+
+  # instance methods
+  def user_name
+    try(:user).try(:name)
+  end
 end
