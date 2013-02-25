@@ -1,4 +1,7 @@
 #comments
-  - @comments.each do |comment|
-    = div_for comment do
-      = simple_format comment.content
+  = render @comments
+  /*- @comments.each do |comment|*/
+    /*= div_for comment do*/
+      /*.well*/
+        /*= link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close'*/
+        /*= simple_format comment.content*/

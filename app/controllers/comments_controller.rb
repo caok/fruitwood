@@ -24,6 +24,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = @commentable.comments.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @commentable }
+      format.json { head :ok }
+      format.js
+    end
+  end
+
   private
   def load_commentable
     resource, id = request.path.split('/')[1, 2] # /dishes/1

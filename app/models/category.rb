@@ -1,9 +1,7 @@
 class Category < ActiveRecord::Base
   attr_accessible :name
 
-  ##############
-  # validation #
-  ##############
+  # validation
   validates :name, :presence => true, :uniqueness => true
 
   # association
