@@ -1,6 +1,9 @@
 - if read_comments?(@comments)
-  .page-header
-    h3= t('helpers.comments')
   #comments
-    = render @comments
-  = render "comments/form" if can? :create, Comment
+    .page-header
+      h3= t('helpers.comments')
+    #comments_box
+      = render @comments
+    = paginate @comments
+
+    = render "comments/form" if can? :create, Comment

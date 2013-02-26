@@ -1,4 +1,4 @@
 <% unless @comment.new_record? %>
-  $('div#comments').append("<%= escape_javascript(render @comment) %>");
+  $('div#comments_box').append("<%= escape_javascript(render @comment) %>");
   $('textarea#comment_content').val('');
 <% end %>

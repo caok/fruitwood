@@ -14,7 +14,7 @@ class DishesController < ApplicationController
   def show
     @dish = Dish.find(params[:id])
     @commentable = @dish
-    @comments = @commentable.comments
+    @comments = @commentable.comments.page(params[:page]).per(4)
     @comment = Comment.new
 
     respond_to do |format|

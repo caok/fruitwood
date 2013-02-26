@@ -98,5 +98,5 @@ $ ->
     animationOptions:
       queue: true
       speed: 200
-      duration: 300
+      duration: 100
       effect: "fadeInOnAppear"
