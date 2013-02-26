@@ -4,6 +4,6 @@
       h3= t('helpers.comments')
     #comments_box
       = render @comments
-    = paginate @comments
+    = paginate @comments, :params => { :anchor => 'replies' }
 
     = render "comments/form" if can? :create, Comment

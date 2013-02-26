@@ -15,4 +15,9 @@ class Dish < ActiveRecord::Base
   # association
   belongs_to :category
   has_many :comments, :as => :commentable, :dependent => :destroy
+
+  def last_page_with_per_page(per_page)
+    page = (self.comments.size.to_f / per_page).ceil
+    page > 1 ? page : nil
+  end
 end

@@ -14,7 +14,9 @@ class DishesController < ApplicationController
   def show
     @dish = Dish.find(params[:id])
     @commentable = @dish
-    @comments = @commentable.comments.page(params[:page]).per(4)
+    @comments = @commentable.comments.includes(:user)
+    params[:page] = @dish.last_page_with_per_page(4) if params[:page].blank?
+    @comments = @comments.page(params[:page]).per(4)
     @comment = Comment.new
 
     respond_to do |format|
