@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222063331) do
+ActiveRecord::Schema.define(:version => 20130226143739) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,8 +37,9 @@ ActiveRecord::Schema.define(:version => 20130222063331) do
     t.integer  "category_id"
     t.text     "cover"
     t.text     "content"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "comments_count", :default => 0
   end
 
   add_index "dishes", ["category_id"], :name => "index_dishes_on_category_id"
@@ -48,8 +49,9 @@ ActiveRecord::Schema.define(:version => 20130222063331) do
     t.date     "start_date"
     t.date     "end_date"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "comments_count", :default => 0
   end
 
   create_table "photos", :force => true do |t|
