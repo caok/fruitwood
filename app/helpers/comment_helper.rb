@@ -3,11 +3,11 @@ module CommentHelper
     can? :create, Comment or comments.size > 0
   end
 
-  def format_date(datetime)
+  def format_datetime(datetime)
     if datetime.nil?
       datetime
     else
-      datetime.strftime("%Y-%m-%d")
+      I18n.localize(datetime, :format => :stamp)
     end
   end
 end

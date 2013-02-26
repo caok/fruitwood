@@ -2,7 +2,7 @@
   .well.well-small
     = link_to '&times;'.html_safe, [@commentable, comment], method: :delete, remote: true, :class => 'close' if can? :destroy, comment
     p.muted
-      = format_date comment.created_at
+      = format_datetime comment.created_at
       |  | #{comment.user_name}
     blockquote
       = simple_format comment.content

@@ -5,6 +5,9 @@ zh:
       datepicker: 'yyyy-mm-dd'
       stamp: '%b%d日(%a)'
       stamp_with_year: '%Y年%b%d日(%a)'
+  time:
+    formats:
+      stamp: '%Y年%b%d日(星期%a)-%l:%M(%p)'
 
   views:
     pagination:
