@@ -2,14 +2,6 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :only => [:create, :destroy]
   before_filter :load_commentable
 
-  def index
-    @comments = @commentable.comments
-  end
-
-  def new
-    @comment = @commentable.comments.new
-  end
-
   def create
     @comment = @commentable.comments.new(params[:comment])
 
