@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @search = User.search(params[:q])
-    @users= @search.result
-    @users = @users.page(params[:page])
+    @users = User.page(params[:page])
 
     respond_to do |format|
       format.html

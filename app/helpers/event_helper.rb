@@ -3,7 +3,6 @@ module EventHelper
     start = event.start_date
     finish = event.end_date
     text = I18n.localize(start, :format => format_year(start))
-    binding.pry
     if start == finish
       text
     else

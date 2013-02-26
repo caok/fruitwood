@@ -2,9 +2,7 @@ class EventsController < ApplicationController
   load_and_authorize_resource :only => [:new,:edit,:create,:update,:destroy]
 
   def index
-    @search = Event.search(params[:q])
-    @events= @search.result.order("id DESC")
-    @events = @events.page(params[:page])
+    @events = Event.order("id DESC").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -2,8 +2,7 @@ class DishesController < ApplicationController
   load_and_authorize_resource :only => [:new,:edit,:create,:update,:destroy]
 
   def index
-    @search = Dish.search(params[:q])
-    @dishes= @search.result.order("id DESC").page(params[:page]).per(12)
+    @dishes= Dish.order("id DESC").page(params[:page]).per(12)
     @dishes = @dishes.where(category_id: params[:category_id]) if params[:category_id].present?
 
     respond_to do |format|
