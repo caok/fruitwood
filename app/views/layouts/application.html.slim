@@ -31,6 +31,9 @@ html
         .container
           = content_for?(:content) ? yield(:content) : yield
 
+    a.go_top href="#" style="display: none;"
+      i.icon.icon-arrow-up
+
     hr
     footer
       .container
