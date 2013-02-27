@@ -1,31 +1,30 @@
-- cache "dish_show:#{@dish.updated_at}" do
-  article.event
-    .row-fluid
-      .span4
-        .event-sidebar
-          .event-map
-            == @dish.cover_html
-          ul.unstyled
+article.event
+  .row-fluid
+    .span4
+      .event-sidebar
+        .event-map
+          == @dish.cover_html
+        ul.unstyled
+          li
+            i.icon-th
+            = @dish.try(:category).try(:name)
+          li
+            i.icon-tag
+            = format_price @dish.price
+          -if can? :edit, @dish
             li
-              i.icon-th
-              = @dish.try(:category).try(:name)
+              i.icon-edit
+              = link_to t('helpers.links.edit'), edit_dish_path(@dish)
+          -if can? :destroy, @dish
             li
-              i.icon-tag
-              = format_price @dish.price
-            -if can? :edit, @dish
-              li
-                i.icon-edit
-                = link_to 'Edit', edit_dish_path(@dish)
-            -if can? :destroy, @dish
-              li
-                i.icon-remove
-                = link_to 'Destroy', @dish, method: :delete, data: { confirm: 'Are you sure?' }
+              i.icon-remove
+              = link_to t('helpers.links.destroy'), @dish, method: :delete, data: { confirm: t("helpers.links.confirm") }
 
-      .span8
-        header
-          h2 = @dish.name
+    .span8
+      header
+        h2 = @dish.name
 
-        .event-body
-          == @dish.content_html
+      .event-body
+        == @dish.content_html
 
 = render "uyan"
