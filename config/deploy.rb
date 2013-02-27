@@ -1,13 +1,28 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+# add config/deploy to load_path
+#$: << File.expand_path('../deploy/', __FILE__)
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
+require 'bundler/capistrano'
+require 'capistrano_database'
+
+set :application, "fruitwood"
+set :repository,  "git://github.com/caok/fruitwood.git"
+set :branch, "master"
+
+set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :deploy_to, "/u/apps/#{application}" # default
+set :deploy_via, :remote_cache # 不要每次都获取全新的repository
+set :deploy_server, ENV['DEPLOY_SERVER'] || 'localhost'
+
+set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "deploy"
+set :use_sudo, true
+default_run_options[:pty] = true
+
+role :web, "#{deploy_server}"                          # Your HTTP server, Apache/etc
+role :app, "#{deploy_server}"                          # This may be the same as your `Web` server
+role :db,  "#{deploy_server}", :primary => true        # This is where Rails migrations will run
+#role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -23,3 +38,19 @@ role :db,  "your slave db-server here"
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+
+namespace :deploy do
+  namespace :assets do
+    desc "deploy the precompiled assets"
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      run_locally("bundle exec rake assets:clean assets:precompile RAILS_ENV=#{rails_env} #{asset_env}")
+      top.upload("public/assets", "#{release_path}/public/", :via => :scp, :recursive => true)
+      run_locally("rm -rf public/assets")
+    end
+  end
+end
+
+require 'capistrano-unicorn'
+
+after 'deploy:start', 'unicorn:start'
+after 'deploy:stop', 'unicorn:stop'
