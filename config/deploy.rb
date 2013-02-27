@@ -1,5 +1,5 @@
 # add config/deploy to load_path
-#$: << File.expand_path('../deploy/', __FILE__)
+$: << File.expand_path('../deploy/', __FILE__)
 
 require 'bundler/capistrano'
 require 'capistrano_database'
@@ -38,6 +38,8 @@ role :db,  "#{deploy_server}", :primary => true        # This is where Rails mig
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+before "db:setup", "deploy:chown"
+after 'deploy:update', 'carrierwave:symlink'
 
 namespace :deploy do
   namespace :assets do
@@ -47,6 +49,22 @@ namespace :deploy do
       top.upload("public/assets", "#{release_path}/public/", :via => :scp, :recursive => true)
       run_locally("rm -rf public/assets")
     end
+  end
+
+  task :chown, :roles => :app do
+    run "#{try_sudo} chown -R #{user}:#{user} #{deploy_to}"
+  end
+
+  desc "create db:seed"
+  task :seed, :roles => :app do
+    run "cd #{current_path} && rake db:seed RAILS_ENV=#{rails_env}"
+  end
+end
+
+namespace :carrierwave do
+  desc "Symlink the Rack::Cache files"
+  task :symlink, :roles => [:app] do
+    run "mkdir -p #{shared_path}/uploads && ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
   end
 end
 
