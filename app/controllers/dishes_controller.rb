@@ -3,7 +3,7 @@ class DishesController < ApplicationController
 
   def index
     @dishes= Dish.order("id DESC").page(params[:page]).per(12)
-    @dishes = @dishes.where(category_id: params[:category_id]) if params[:category_id].present?
+    @dishes = @dishes.includes([:category]).where(category_id: params[:category_id]) if params[:category_id].present?
 
     respond_to do |format|
       format.html # index.html.erb
