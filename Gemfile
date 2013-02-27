@@ -36,11 +36,16 @@ end
 
 group :development do
   gem 'thin'
-  gem 'pry'
+  gem 'pry-nav'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'capistrano-unicorn', :require => false
+end
+
+group :production do
+  gem 'unicorn'
 end
 
 # To use ActiveModel has_secure_password
@@ -48,12 +53,6 @@ end
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
