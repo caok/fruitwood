@@ -1,3 +1,4 @@
+# encoding: utf-8
 # add config/deploy to load_path
 $: << File.expand_path('../deploy/', __FILE__)
 
@@ -5,7 +6,8 @@ require 'bundler/capistrano'
 require 'capistrano_database'
 
 set :application, "fruitwood"
-set :repository,  "git://github.com/caok/fruitwood.git"
+set :repository, "git://github.com/caok/fruitwood.git"
+#set :repository, ENV['REPO'] || File.expand_path('../../.git/', __FILE__)
 set :branch, "master"
 
 set :scm, :git
@@ -19,27 +21,16 @@ set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "deploy"
 set :use_sudo, true
 default_run_options[:pty] = true
 
+set :rbenv_version, ENV['RBENV_VERSION'] || "1.9.3-p194"
+set :default_environment, {
+  'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH",
+  'RBENV_VERSION' => "#{rbenv_version}",
+}
+
 role :web, "#{deploy_server}"                          # Your HTTP server, Apache/etc
 role :app, "#{deploy_server}"                          # This may be the same as your `Web` server
 role :db,  "#{deploy_server}", :primary => true        # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
-before "db:setup", "deploy:chown"
-after 'deploy:update', 'carrierwave:symlink'
 
 namespace :deploy do
   namespace :assets do
@@ -62,11 +53,14 @@ namespace :deploy do
 end
 
 namespace :carrierwave do
-  desc "Symlink the Rack::Cache files"
+  desc "Symlink the upload files"
   task :symlink, :roles => [:app] do
     run "mkdir -p #{shared_path}/uploads && ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
   end
 end
+
+before "db:setup", "deploy:chown"
+after 'deploy:update', 'carrierwave:symlink'
 
 require 'capistrano-unicorn'
 
