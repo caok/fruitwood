@@ -17,11 +17,11 @@ set :deploy_to, "/u/apps/#{application}" # default
 set :deploy_via, :remote_cache # 不要每次都获取全新的repository
 set :deploy_server, ENV['DEPLOY_SERVER'] || 'localhost'
 
-set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "deploy"
+set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "ruby"
 set :use_sudo, true
 default_run_options[:pty] = true
 
-set :rbenv_version, ENV['RBENV_VERSION'] || "1.9.3-p194"
+set :rbenv_version, ENV['RBENV_VERSION'] || "1.9.3-p392"
 set :default_environment, {
   'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH",
   'RBENV_VERSION' => "#{rbenv_version}",

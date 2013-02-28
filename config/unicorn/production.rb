@@ -9,7 +9,7 @@ timeout 180
 listen "127.0.0.1:9000"
 
 # Spawn unicorn master worker for user apps (group: apps)
-user ENV['USER'] || 'deploy', ENV['USER'] || 'deploy'
+user ENV['USER'] || 'ruby', ENV['USER'] || 'ruby'
 
 # Fill path to your app
 working_directory app_path
