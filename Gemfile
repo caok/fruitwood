@@ -14,7 +14,6 @@ gem 'cancan'
 # attachment
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'exception_notification'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
@@ -47,6 +46,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'exception_notification'
 end
 
 # To use ActiveModel has_secure_password

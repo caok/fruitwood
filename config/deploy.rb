@@ -6,9 +6,9 @@ require 'bundler/capistrano'
 require 'capistrano_database'
 
 set :application, "fruitwood"
-set :repository, "git://github.com/caok/fruitwood.git"
-#set :repository, ENV['REPO'] || File.expand_path('../../.git/', __FILE__)
-set :branch, "master"
+#set :repository, "git://github.com/caok/fruitwood.git"
+#set :branch, "master"
+set :repository, ENV['REPO'] || File.expand_path('../../.git/', __FILE__)
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
