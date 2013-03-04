@@ -15,7 +15,6 @@ set :scm, :git
 
 set :deploy_to, "/u/apps/#{application}" # default
 set :deploy_via, :remote_cache # 不要每次都获取全新的repository
-set :deploy_server, ENV['DEPLOY_SERVER'] || 'localhost'
 
 set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "ruby"
 set :use_sudo, true
@@ -26,6 +25,8 @@ set :default_environment, {
   'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH",
   'RBENV_VERSION' => "#{rbenv_version}",
 }
+
+set :deploy_server, ENV['DEPLOY_SERVER'] || 'localhost'
 
 role :web, "#{deploy_server}"                          # Your HTTP server, Apache/etc
 role :app, "#{deploy_server}"                          # This may be the same as your `Web` server
