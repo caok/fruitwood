@@ -98,7 +98,7 @@ end
 before "db:setup", "deploy:chown"
 after 'deploy:update', 'carrierwave:symlink'
 
-require 'capistrano-unicorn'
+#require 'capistrano-unicorn'
 
-after 'deploy:start', 'unicorn:start'
-after 'deploy:stop', 'unicorn:stop'
+#after 'deploy:start', 'unicorn:start'
+#after 'deploy:stop', 'unicorn:stop'
