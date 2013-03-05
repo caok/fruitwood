@@ -16,7 +16,7 @@ listen 9000
 user ENV['USER'] || 'ruby', ENV['USER'] || 'ruby'
 
 # Fill path to your app
-working_directory app_path
+working_directory current_path
 
 # Should be 'production' by default, otherwise use other env 
 rails_env = ENV['RAILS_ENV'] || 'production'
