@@ -34,6 +34,19 @@ role :db,  "#{deploy_server}", :primary => true        # This is where Rails mig
 #role :db,  "your slave db-server here"
 
 namespace :deploy do
+  task :start, :roles => :app do
+    run "cd #{current_path}; RAILS_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -D"
+  end
+
+  task :stop, :roles => :app do
+    run "kill -QUIT `cat #{current_path}/tmp/pids/unicorn.pid`"
+  end
+
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "kill -USR2 `cat #{current_path}/tmp/pids/unicorn.pid`"
+  end
+
   namespace :assets do
     desc "deploy the precompiled assets"
     task :precompile, :roles => :web, :except => { :no_release => true } do
@@ -62,8 +75,3 @@ end
 
 before "db:setup", "deploy:chown"
 after 'deploy:update', 'carrierwave:symlink'
-
-require 'capistrano-unicorn'
-
-after 'deploy:start', 'unicorn:start'
-after 'deploy:stop', 'unicorn:stop'

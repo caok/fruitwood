@@ -41,7 +41,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano'
 end
 
 group :production do

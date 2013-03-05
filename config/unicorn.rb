@@ -1,6 +1,9 @@
 # encoding: utf-8
 # Set your full path to application.
-app_path = "/u/apps/fruitwood/current"
+application = 'fruitwood'
+app_path = "/u/apps/#{application}"
+shared_path = "#{app_path}/shared"
+current_path = "#{app_path}/current"
 
 # Set unicorn options
 worker_processes 4
@@ -23,7 +26,8 @@ stderr_path "log/unicorn.log"
 stdout_path "log/unicorn.log"
 
 # Set master PID location
-pid "#{app_path}/tmp/pids/unicorn.pid"
+pid "#{current_path}/tmp/pids/unicorn.pid"
+#pid "#{shared_path}/pids/unicorn.pid"
 
 if GC.respond_to?(:copy_on_write_friendly=)
     GC.copy_on_write_friendly = true
