@@ -6,7 +6,8 @@ app_path = "/u/apps/fruitwood/current"
 worker_processes 4
 preload_app true   # Preload our app for more speed
 timeout 180
-listen "127.0.0.1:9000"
+listen 9000
+#listen "/tmp/unicorn.fruitwood.sock"
 
 # Spawn unicorn master worker for user apps (group: apps)
 user ENV['USER'] || 'ruby', ENV['USER'] || 'ruby'
@@ -23,6 +24,10 @@ stdout_path "log/unicorn.log"
 
 # Set master PID location
 pid "#{app_path}/tmp/pids/unicorn.pid"
+
+if GC.respond_to?(:copy_on_write_friendly=)
+    GC.copy_on_write_friendly = true
+end
 
 before_fork do |server, worker|
   ActiveRecord::Base.connection.disconnect!
