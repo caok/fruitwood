@@ -34,10 +34,12 @@ role :db,  "#{deploy_server}", :primary => true        # This is where Rails mig
 #role :db,  "your slave db-server here"
 
 namespace :deploy do
+  desc "Start Application"
   task :start, :roles => :app do
     run "cd #{current_path}; RAILS_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -D"
   end
 
+  desc "Stop Application"
   task :stop, :roles => :app do
     run "kill -QUIT `cat #{current_path}/tmp/pids/unicorn.pid`"
   end
