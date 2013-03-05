@@ -63,19 +63,19 @@ end
 namespace :puma do
   desc "Start Puma"
   task :start, :except => { :no_release => true } do
-    run "#{try_sudo}/etc/init.d/puma start #{application}"
+    run "#{try_sudo} /etc/init.d/puma start #{application}"
   end
   after "deploy:start", "puma:start"
 
   desc "Stop Puma"
   task :stop, :except => { :no_release => true } do
-    run "#{try_sudo}/etc/init.d/puma stop #{application}"
+    run "#{try_sudo} /etc/init.d/puma stop #{application}"
   end
   after "deploy:stop", "puma:stop"
 
   desc "Restart Puma"
   task :restart, roles: :app do
-    run "#{try_sudo}/etc/init.d/puma restart #{application}"
+    run "#{try_sudo} /etc/init.d/puma restart #{application}"
   end
   after "deploy:restart", "puma:restart"
 
