@@ -18,7 +18,7 @@ set :deploy_via, :remote_cache # 不要每次都获取全新的repository
 set :deploy_server, ENV['DEPLOY_SERVER'] || 'localhost'
 
 set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "ruby"
-set :use_sudo, true
+set :use_sudo, false
 default_run_options[:pty] = true
 
 set :rbenv_version, ENV['RBENV_VERSION'] || "1.9.3-p392"
@@ -43,7 +43,7 @@ namespace :deploy do
   end
 
   task :chown, :roles => :app do
-    run "#{try_sudo} chown -R #{user}:#{user} #{deploy_to}"
+    run "#{sudo} chown -R #{user}:#{user} #{deploy_to}"
   end
 
   desc "create db:seed"
