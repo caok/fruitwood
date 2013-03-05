@@ -43,6 +43,13 @@ namespace :deploy do
     end
   end
 
+  %w(start stop restart).each do |action|
+    desc "puma:#{action}"
+    task action.to_sym do
+       find_and_execute_task("puma:#{action}")
+    end
+  end
+
   task :chown, :roles => :app do
     run "#{try_sudo} chown -R #{user}:#{user} #{deploy_to}"
   end
@@ -52,6 +59,34 @@ namespace :deploy do
     run "cd #{current_path} && rake db:seed RAILS_ENV=#{rails_env}"
   end
 end
+
+namespace :puma do
+  desc "Start Puma"
+  task :start, :except => { :no_release => true } do
+    run "#{try_sudo}/etc/init.d/puma start #{application}"
+  end
+  after "deploy:start", "puma:start"
+
+  desc "Stop Puma"
+  task :stop, :except => { :no_release => true } do
+    run "#{try_sudo}/etc/init.d/puma stop #{application}"
+  end
+  after "deploy:stop", "puma:stop"
+
+  desc "Restart Puma"
+  task :restart, roles: :app do
+    run "#{try_sudo}/etc/init.d/puma restart #{application}"
+  end
+  after "deploy:restart", "puma:restart"
+
+  desc "create a shared tmp dir for puma state files"
+  task :after_symlink, roles: :app do
+    run "#{try_sudo} rm -rf #{release_path}/tmp"
+    run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+  end
+  after "deploy:create_symlink", "puma:after_symlink"
+end
+
 
 namespace :carrierwave do
   desc "Symlink the upload files"
