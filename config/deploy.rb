@@ -65,26 +65,26 @@ namespace :puma do
   task :start, :except => { :no_release => true } do
     run "#{try_sudo} /etc/init.d/puma start #{application}"
   end
-  after "deploy:start", "puma:start"
+  #after "deploy:start", "puma:start"
 
   desc "Stop Puma"
   task :stop, :except => { :no_release => true } do
     run "#{try_sudo} /etc/init.d/puma stop #{application}"
   end
-  after "deploy:stop", "puma:stop"
+  #after "deploy:stop", "puma:stop"
 
   desc "Restart Puma"
   task :restart, roles: :app do
     run "#{try_sudo} /etc/init.d/puma restart #{application}"
   end
-  after "deploy:restart", "puma:restart"
+  #after "deploy:restart", "puma:restart"
 
-  desc "create a shared tmp dir for puma state files"
-  task :after_symlink, roles: :app do
-    run "#{try_sudo} rm -rf #{release_path}/tmp"
-    run "ln -s #{shared_path}/tmp #{release_path}/tmp"
-  end
-  after "deploy:create_symlink", "puma:after_symlink"
+  #desc "create a shared tmp dir for puma state files"
+  #task :after_symlink, roles: :app do
+    #run "#{try_sudo} rm -rf #{release_path}/tmp"
+    #run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+  #end
+  #after "deploy:create_symlink", "puma:after_symlink"
 
   desc "add app to /etc/puma.conf"
   task :add_instance, roles: :app do

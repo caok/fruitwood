@@ -14,6 +14,7 @@ gem 'cancan'
 # attachment
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'puma'
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
