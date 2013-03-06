@@ -85,8 +85,17 @@ namespace :puma do
     run "ln -s #{shared_path}/tmp #{release_path}/tmp"
   end
   after "deploy:create_symlink", "puma:after_symlink"
-end
 
+  desc "add app to /etc/puma.conf"
+  task :add_instance, roles: :app do
+    run "#{try_sudo} /etc/init.d/puma add #{current_path} #{user} #{current_path}/config/puma.rb #{current_path}/log/puma.log"
+  end
+
+  desc "remove app from /etc/puma.conf"
+  task :remove_instance, roles: :app do
+    run "#{try_sudo} /etc/init.d/puma remove #{current_path}"
+  end
+end
 
 namespace :carrierwave do
   desc "Symlink the upload files"
@@ -97,6 +106,8 @@ end
 
 before "db:setup", "deploy:chown"
 after 'deploy:update', 'carrierwave:symlink'
+after 'deploy:update', 'puma:remove_instance'
+after 'deploy:update', 'puma:add_instance'
 
 #require 'capistrano-unicorn'
 
