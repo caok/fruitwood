@@ -43,12 +43,12 @@ namespace :deploy do
     end
   end
 
-  %w(start stop restart).each do |action|
-    desc "puma:#{action}"
-    task action.to_sym do
-       find_and_execute_task("puma:#{action}")
-    end
-  end
+  #%w(start stop restart).each do |action|
+    #desc "puma:#{action}"
+    #task action.to_sym do
+       #find_and_execute_task("puma:#{action}")
+    #end
+  #end
 
   task :chown, :roles => :app do
     run "#{try_sudo} chown -R #{user}:#{user} #{deploy_to}"
@@ -60,42 +60,42 @@ namespace :deploy do
   end
 end
 
-namespace :puma do
-  desc "Start Puma"
-  task :start, :except => { :no_release => true } do
-    run "#{try_sudo} /etc/init.d/puma start #{application}"
-  end
-  #after "deploy:start", "puma:start"
-
-  desc "Stop Puma"
-  task :stop, :except => { :no_release => true } do
-    run "#{try_sudo} /etc/init.d/puma stop #{application}"
-  end
-  #after "deploy:stop", "puma:stop"
-
-  desc "Restart Puma"
-  task :restart, roles: :app do
-    run "#{try_sudo} /etc/init.d/puma restart #{application}"
-  end
-  #after "deploy:restart", "puma:restart"
-
-  #desc "create a shared tmp dir for puma state files"
-  #task :after_symlink, roles: :app do
-    #run "#{try_sudo} rm -rf #{release_path}/tmp"
-    #run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+#namespace :puma do
+  #desc "Start Puma"
+  #task :start, :except => { :no_release => true } do
+    #run "#{try_sudo} /etc/init.d/puma start #{application}"
   #end
-  #after "deploy:create_symlink", "puma:after_symlink"
+  ##after "deploy:start", "puma:start"
 
-  desc "add app to /etc/puma.conf"
-  task :add_instance, roles: :app do
-    run "#{try_sudo} /etc/init.d/puma add #{current_path} #{user} #{current_path}/config/puma.rb #{current_path}/log/puma.log"
-  end
+  #desc "Stop Puma"
+  #task :stop, :except => { :no_release => true } do
+    #run "#{try_sudo} /etc/init.d/puma stop #{application}"
+  #end
+  ##after "deploy:stop", "puma:stop"
 
-  desc "remove app from /etc/puma.conf"
-  task :remove_instance, roles: :app do
-    run "#{try_sudo} /etc/init.d/puma remove #{current_path}"
-  end
-end
+  #desc "Restart Puma"
+  #task :restart, roles: :app do
+    #run "#{try_sudo} /etc/init.d/puma restart #{application}"
+  #end
+  ##after "deploy:restart", "puma:restart"
+
+  ##desc "create a shared tmp dir for puma state files"
+  ##task :after_symlink, roles: :app do
+    ##run "#{try_sudo} rm -rf #{release_path}/tmp"
+    ##run "ln -s #{shared_path}/tmp #{release_path}/tmp"
+  ##end
+  ##after "deploy:create_symlink", "puma:after_symlink"
+
+  #desc "add app to /etc/puma.conf"
+  #task :add_instance, roles: :app do
+    #run "#{try_sudo} /etc/init.d/puma add #{current_path} #{user} #{current_path}/config/puma.rb #{current_path}/log/puma.log"
+  #end
+
+  #desc "remove app from /etc/puma.conf"
+  #task :remove_instance, roles: :app do
+    #run "#{try_sudo} /etc/init.d/puma remove #{current_path}"
+  #end
+#end
 
 namespace :carrierwave do
   desc "Symlink the upload files"
@@ -106,10 +106,15 @@ end
 
 before "db:setup", "deploy:chown"
 after 'deploy:update', 'carrierwave:symlink'
-after 'deploy:update', 'puma:remove_instance'
-after 'deploy:update', 'puma:add_instance'
+#after 'deploy:update', 'puma:remove_instance'
+#after 'deploy:update', 'puma:add_instance'
 
 #require 'capistrano-unicorn'
 
 #after 'deploy:start', 'unicorn:start'
 #after 'deploy:stop', 'unicorn:stop'
+
+require 'puma/capistrano'
+
+after 'deploy:start', 'puma:start'
+after 'deploy:stop', 'puma:stop'

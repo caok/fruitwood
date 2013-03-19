@@ -14,7 +14,7 @@ gem 'cancan'
 # attachment
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'puma'
+gem 'puma', "~> 2.0.0.b6"
 
 group :assets do
   gem 'sass-rails',     '~> 3.2.3'
@@ -46,7 +46,7 @@ group :development do
 end
 
 group :production do
-  gem 'puma'
+  #gem 'puma'
   gem 'unicorn'
   gem 'exception_notification'
 end
