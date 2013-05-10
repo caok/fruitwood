@@ -6,6 +6,7 @@
     li 级别: 九牛
     li = "电话: #{@user.tel}"
     li = "email: #{@user.email}" if @user.email.present?
+    li = "生日: #{@user.birth}" if @user.birth.present?
     li = "#{l @user.created_at.to_date} 加入"
     li.divider
 

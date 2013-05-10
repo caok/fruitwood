@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :tel, :roles_mask
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :tel, :roles_mask, :birth, :vip
 
   # constant
   ROLES = %w[admin customer]

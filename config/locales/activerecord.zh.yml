@@ -10,6 +10,8 @@ zh:
         name: "姓名"
         tel: "电话"
         email: "Email 地址"
+        birth: "生日"
+        vip: "VIP"
         password: "密码"
         roles_mask: "角色"
         grant_permission: "权限"
