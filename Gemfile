@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 
 gem 'simple_form'
@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine', '~> 1.3.1'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
