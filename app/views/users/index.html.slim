@@ -8,6 +8,8 @@ table.table.table-striped
       th= model_class.human_attribute_name(:id)
       th= model_class.human_attribute_name(:name)
       th= model_class.human_attribute_name(:tel)
+      th= model_class.human_attribute_name(:birth)
+      th= model_class.human_attribute_name(:vip)
       th= model_class.human_attribute_name(:roles_mask)
       th= model_class.human_attribute_name(:grant_permission)
       th= model_class.human_attribute_name(:last_sign_in_at)
@@ -18,6 +20,8 @@ table.table.table-striped
         td= link_to user.id, user_path(user)
         td= user.name
         td= user.tel
+        td= user.birth
+        td= user.vip
         td
           -for role in user.roles
             = I18n.t "role.#{role}"

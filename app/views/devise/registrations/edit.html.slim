@@ -7,6 +7,7 @@
       = f.input :name
       = f.input :tel
       = f.input :email
+      = f.input :birth, :as => 'date_picker'
       = f.input :password, :hint => t('devise.views.registrations.edit.change_pass_tip'), :input_html => { :autocomplete => 'off' }
       = f.input :password_confirmation
 
