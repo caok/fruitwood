@@ -3,22 +3,20 @@
  */
 
 @import "0.variables";
-@import "bootstrap";
+@import "bootstrap-custom";
 @import "bootstrap/responsive-utilities";
 @import "bootstrap/responsive-768px-979px";
 @import "bootstrap/responsive-767px-max";
-/* @import "bootstrap/responsive-navbar"; no need, only one button now */
+/* @import "bootstrap/responsive-navbar"; */
 @import "bootstrap-datepicker";
 
 /* main */
-
 @import "1.base";
 @import "2.layout";
 @import "3.states";
 @import "4.themes";
 
 /* modules */
-
 @import "modules/user-bar";
 
 @import "modules/list";

@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap
+#= require bootstrap-custom
 #= require bootstrap-datepicker/core
 #= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 #= require jquery-fileupload/basic
