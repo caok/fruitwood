@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 gem 'mysql2'
 
 gem 'simple_form'
@@ -23,7 +23,6 @@ group :assets do
   gem 'bootstrap-datepicker-rails'
   gem 'bootstrap-sass', '~> 2.2.2.0'
   gem 'jquery-fileupload-rails'
-  gem 'therubyracer', '~> 0.11.2'
   gem 'turbo-sprockets-rails3'
 end
 
