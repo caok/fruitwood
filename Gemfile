@@ -54,6 +54,3 @@ end
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
-# To use debugger
-# gem 'debugger'

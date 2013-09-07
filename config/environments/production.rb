@@ -68,10 +68,12 @@ Fruitwood::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.middleware.use ExceptionNotifier,
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[bestgmnh's exception]",
     :sender_address => 'starcloudsip@163.com',
-    :exception_recipients => %w{caok1231@163.com},
-    :ignore_exceptions => ExceptionNotifier.default_ignore_exceptions
+    :exception_recipients => %w{caok1231@163.com}
+  }
 
   config.action_mailer.delivery_method = :smtp
 
