@@ -7,7 +7,7 @@ require 'capistrano_database'
 
 set :application, "fruitwood"
 #set :repository, "git://github.com/caok/fruitwood.git"
-#set :branch, "master"
+set :branch, "master"
 set :repository, ENV['REPO'] || File.expand_path('../../.git/', __FILE__)
 
 set :scm, :git
@@ -20,6 +20,7 @@ set :user, ENV['DEPLOY_USER'] || ENV['USER'] || "ruby"
 set :use_sudo, true
 default_run_options[:pty] = true
 
+set :bundle_without,  [:development, :test]
 set :rbenv_version, ENV['RBENV_VERSION'] || "2.0.0-p247"
 set :default_environment, {
   'PATH' => "/home/#{user}/.rbenv/shims:/home/#{user}/.rbenv/bin:$PATH",
@@ -32,6 +33,8 @@ role :web, "#{deploy_server}"                          # Your HTTP server, Apach
 role :app, "#{deploy_server}"                          # This may be the same as your `Web` server
 role :db,  "#{deploy_server}", :primary => true        # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
+
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
   namespace :assets do
