@@ -3,11 +3,11 @@
 app_path = "/u/apps/fruitwood/current"
 
 # Set unicorn options
-worker_processes 4
+worker_processes 1
 preload_app true   # Preload our app for more speed
 timeout 180
-#listen 9000
-listen "/tmp/unicorn.fruitwood.sock"
+#listen 9000, :tcp_nopush => true
+listen "/tmp/unicorn.fruitwood.sock", :backlog => 64
 
 # Spawn unicorn master worker for user apps (group: apps)
 user ENV['USER'] || 'ruby', ENV['USER'] || 'ruby'
